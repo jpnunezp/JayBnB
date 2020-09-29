@@ -7,6 +7,7 @@ package form;
 import javax.swing.SwingConstants;
 
 import org.kordamp.ikonli.entypo.Entypo;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeBrands;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.swing.FontIcon;
 
@@ -47,12 +48,15 @@ import rojeru_san.complementos.RSCustomPopuMenu;
 import javax.swing.JScrollPane;
 import RSMaterialComponent.RSTableMetroCustom;
 import javax.swing.table.DefaultTableModel;
+import RSMaterialComponent.RSComboBoxMaterial;
+import RSMaterialComponent.RSComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author RavenPC
  */
-public class BuscarCliente extends javax.swing.JPanel {
+public class ListarClientes extends javax.swing.JPanel {
 
 	private static final String EMAIL_PATTERN = 
 		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -63,7 +67,7 @@ public class BuscarCliente extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public BuscarCliente() {
+    public ListarClientes() {
     	setBackground(new Color(255, 255, 255));
         initComponents();
     }
@@ -84,24 +88,19 @@ public class BuscarCliente extends javax.swing.JPanel {
 
         jLabel1.setBackground(new Color(0, 80, 112));
         jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Buscar  Cliente");
+        jLabel1.setText("Listado de Clientes");
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
         btnshpAgregarCliente.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "LOS DATOS DEL CLIENTE FUERON ACTUALIZADOS EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
-        		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
-        		//mensaje.setVisible(true);
-            	MainMenu.panelBody.removeAll();
-            	MainMenu.panelBody.add(new ModificarCliente());
-            	MainMenu.panelBody.repaint();
-            	MainMenu.panelBody.revalidate();
-        	
+        		MensajeExport me = new MensajeExport();
+        		me.setUndecorated(true);
+        		me.setVisible(true);        	
         	}
         });
-        btnshpAgregarCliente.setBounds(49, 531, 211, 63);
+        btnshpAgregarCliente.setBounds(280, 531, 211, 63);
         btnshpAgregarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpAgregarCliente.setForegroundHover(Color.white);
         btnshpAgregarCliente.backgroundHover = UIManager.getColor("Button.shadow");
@@ -110,8 +109,8 @@ public class BuscarCliente extends javax.swing.JPanel {
         btnshpAgregarCliente.setForeground(Color.gray);
         btnshpAgregarCliente.setBackground(new Color(0, 51, 102));
         btnshpAgregarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpAgregarCliente.setText("   ACTUALIZAR");
-        btnshpAgregarCliente.setIcon(FontIcon.of(FontAwesomeSolid.SAVE, 40, Color.white));
+        btnshpAgregarCliente.setText("   EXPORTAR");
+        btnshpAgregarCliente.setIcon(FontIcon.of(Entypo.EXPORT, 40, Color.white));
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.ROUND);
         
         RSButtonShape btnshpVolverCliente = new RSButtonShape();
@@ -136,7 +135,7 @@ public class BuscarCliente extends javax.swing.JPanel {
         btnshpVolverCliente.setIcon(FontIcon.of(Entypo.BACK, 40, new Color(0, 51, 102)));
         btnshpVolverCliente.setForma(RSButtonShape.FORMA.ROUND);
         
-        JLabel lblRUT = new JLabel("RUT:");
+        JLabel lblRUT = new JLabel("Filtrar por:");
         lblRUT.setForeground(new Color(3, 33,  57));
         lblRUT.setBounds(49, 59, 119, 33);
         lblRUT.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -146,35 +145,6 @@ public class BuscarCliente extends javax.swing.JPanel {
         add(btnshpAgregarCliente);
         add(btnshpVolverCliente);
         add(lblRUT);
-        
-        RSTextFieldOne txtRUT = new RSTextFieldOne();
-        txtRUT.setBorderColor(new Color(3, 33,  57));
-        txtRUT.setFont(new Font("Dubai", Font.BOLD, 20));
-        txtRUT.setPlaceholder("15625100-3");
-        txtRUT.setPhColor(new Color(105, 105, 105));
-        txtRUT.setForeground(new Color(25, 25, 112));
-        txtRUT.setBounds(190, 55, 140, 42);
-        ((AbstractDocument) txtRUT.getDocument()).setDocumentFilter(filter);
-        add(txtRUT);
-        
-        RSButtonShape btnshpBuscar = new RSButtonShape();
-        btnshpBuscar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnshpBuscar.setText("   BUSCAR");
-        btnshpBuscar.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpBuscar.setForma(RSButtonShape.FORMA.ROUND);
-        btnshpBuscar.setForegroundText(Color.WHITE);
-        btnshpBuscar.setForegroundHover(Color.WHITE);
-        btnshpBuscar.setForeground(Color.GRAY);
-        btnshpBuscar.setFont(new Font("Dubai", Font.BOLD, 13));
-        btnshpBuscar.backgroundHover = SystemColor.controlShadow;
-        btnshpBuscar.setBackgroundHover(SystemColor.controlShadow);
-        btnshpBuscar.setBackground(new Color(0, 51, 102));
-        btnshpBuscar.setIcon(FontIcon.of(FontAwesomeSolid.SEARCH, 24, Color.white));
-        btnshpBuscar.setBounds(358, 54, 140, 42);
-        add(btnshpBuscar);
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 122, 753, 367);
@@ -195,20 +165,17 @@ public class BuscarCliente extends javax.swing.JPanel {
         ));
         scrollPane.setViewportView(tblCliente);
         
-        RSButtonShape btnshpDeshabilitar = new RSButtonShape();
-        btnshpDeshabilitar.setText("   DESHABILITAR");
-        btnshpDeshabilitar.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpDeshabilitar.setForma(RSButtonShape.FORMA.ROUND);
-        btnshpDeshabilitar.setForegroundText(Color.WHITE);
-        btnshpDeshabilitar.setForegroundHover(Color.WHITE);
-        btnshpDeshabilitar.setForeground(Color.GRAY);
-        btnshpDeshabilitar.setFont(new Font("Dubai", Font.BOLD, 13));
-        btnshpDeshabilitar.backgroundHover = SystemColor.controlShadow;
-        btnshpDeshabilitar.setBackgroundHover(new Color(220, 20, 60));
-        btnshpDeshabilitar.setBackground(new Color(165, 42, 42));
-        btnshpDeshabilitar.setIcon(FontIcon.of(Entypo.BLOCK, 40, Color.white));
-        btnshpDeshabilitar.setBounds(284, 531, 211, 63);
-        add(btnshpDeshabilitar);
+        RSComboBox comboBox = new RSComboBox();
+        comboBox.setColorBorde(new Color(25, 25, 112));
+        comboBox.setConBorde(true);
+        comboBox.setColorSeleccion(new Color(211, 211, 211));
+        comboBox.setColorArrow(new Color(25, 25, 112));
+        comboBox.setFont(new Font("Dubai", Font.BOLD, 14));
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"ARRIENDOS ACTIVOS", "ARRIENDOS INACTIVOS"}));
+        comboBox.setForeground(new Color(25, 25, 112));
+        comboBox.setColorFondo(new Color(255, 255, 255));
+        comboBox.setBounds(178, 60, 200, 32);
+        add(comboBox);
     }// </editor-fold>//GEN-END:initComponents
     private javax.swing.JLabel jLabel1;
     

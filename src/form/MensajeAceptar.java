@@ -22,7 +22,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MensajeOK extends JFrame {
+public class MensajeAceptar extends JFrame {
 
 	private JPanel contentPane;
 
@@ -34,7 +34,7 @@ public class MensajeOK extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MensajeOK frame = new MensajeOK(titulo, mensaje);
+					MensajeAceptar frame = new MensajeAceptar(titulo, mensaje);
 					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -47,7 +47,7 @@ public class MensajeOK extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MensajeOK(String titulo, String mensaje) {
+	public MensajeAceptar(String titulo, String mensaje) {
 		setType(Type.POPUP);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 361, 214);
@@ -56,6 +56,8 @@ public class MensajeOK extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(25, 25, 112));
