@@ -49,7 +49,7 @@ import rojeru_san.complementos.RSCustomPopuMenu;
  *
  * @author RavenPC
  */
-public class RegistroCliente extends javax.swing.JPanel {
+public class BuscarCliente extends javax.swing.JPanel {
 
 	private static final String EMAIL_PATTERN = 
 		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -60,7 +60,7 @@ public class RegistroCliente extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public RegistroCliente() {
+    public BuscarCliente() {
     	setBackground(new Color(255, 255, 255));
         initComponents();
     }
@@ -81,14 +81,14 @@ public class RegistroCliente extends javax.swing.JPanel {
 
         jLabel1.setBackground(new Color(0, 80, 112));
         jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Registrar un nuevo cliente");
+        jLabel1.setText("Modificar un nuevo cliente");
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
         btnshpAgregarCliente.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "EL CLIENTE FUE GUARDADO EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
+        		JOptionPane.showMessageDialog(null, "LOS DATOS DEL CLIENTE FUERON ACTUALIZADOS EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
         		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
         		//mensaje.setVisible(true);
             	MainMenu.panelBody.removeAll();
@@ -107,7 +107,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         btnshpAgregarCliente.setForeground(Color.gray);
         btnshpAgregarCliente.setBackground(new Color(0, 51, 102));
         btnshpAgregarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpAgregarCliente.setText("   GUARDAR");
+        btnshpAgregarCliente.setText("   ACTUALIZAR");
         btnshpAgregarCliente.setIcon(FontIcon.of(FontAwesomeSolid.SAVE, 40, Color.white));
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.ROUND);
         
@@ -135,13 +135,13 @@ public class RegistroCliente extends javax.swing.JPanel {
         
         JLabel lblRUT = new JLabel("RUT:");
         lblRUT.setForeground(new Color(3, 33,  57));
-        lblRUT.setBounds(69, 63, 119, 33);
+        lblRUT.setBounds(77, 92, 119, 33);
         lblRUT.setHorizontalAlignment(SwingConstants.RIGHT);
         lblRUT.setFont(new Font("Dubai", Font.BOLD, 20));
         
         JLabel lblNombre = new JLabel("Nombre Completo:");
         lblNombre.setForeground(new Color(3, 33,  57));
-        lblNombre.setBounds(2, 110, 186, 33);
+        lblNombre.setBounds(10, 139, 186, 33);
         lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNombre.setFont(new Font("Dubai", Font.BOLD, 20));
         setLayout(null);
@@ -155,49 +155,49 @@ public class RegistroCliente extends javax.swing.JPanel {
         lblApellidoPaterno.setForeground(new Color(3, 33,  57));
         lblApellidoPaterno.setHorizontalAlignment(SwingConstants.RIGHT);
         lblApellidoPaterno.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblApellidoPaterno.setBounds(12, 163, 186, 33);
+        lblApellidoPaterno.setBounds(20, 192, 186, 33);
         add(lblApellidoPaterno);
         
         JLabel lblApellidoAterno = new JLabel("Apellido Materno:");
         lblApellidoAterno.setForeground(new Color(3, 33,  57));
         lblApellidoAterno.setHorizontalAlignment(SwingConstants.RIGHT);
         lblApellidoAterno.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblApellidoAterno.setBounds(2, 216, 186, 33);
+        lblApellidoAterno.setBounds(10, 245, 186, 33);
         add(lblApellidoAterno);
         
         JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
         lblFechaDeNacimiento.setForeground(new Color(3, 33,  57));
         lblFechaDeNacimiento.setHorizontalAlignment(SwingConstants.RIGHT);
         lblFechaDeNacimiento.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblFechaDeNacimiento.setBounds(12, 275, 186, 33);
+        lblFechaDeNacimiento.setBounds(20, 304, 186, 33);
         add(lblFechaDeNacimiento);
         
         RSDateChooser dateChooser = new RSDateChooser();
         dateChooser.setBgColor(new Color(3, 33, 57));
         dateChooser.setBackground(new Color(3, 33, 57));
         dateChooser.setFormatDate("dd/MM/yyyy");
-        dateChooser.setBounds(218, 266, 166, 42);
+        dateChooser.setBounds(226, 295, 166, 42);
         add(dateChooser);
         
         JLabel lblEmail = new JLabel("Email:");
         lblEmail.setForeground(new Color(3, 33,  57));
         lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
         lblEmail.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblEmail.setBounds(2, 322, 186, 33);
+        lblEmail.setBounds(10, 351, 186, 33);
         add(lblEmail);
         
         JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
         lblDireccin.setForeground(new Color(3, 33,  57));
         lblDireccin.setHorizontalAlignment(SwingConstants.RIGHT);
         lblDireccin.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblDireccin.setBounds(2, 375, 186, 33);
+        lblDireccin.setBounds(10, 404, 186, 33);
         add(lblDireccin);
         
         JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
         lblTelfono.setForeground(new Color(3, 33,  57));
         lblTelfono.setHorizontalAlignment(SwingConstants.RIGHT);
         lblTelfono.setFont(new Font("Dubai", Font.BOLD, 20));
-        lblTelfono.setBounds(2, 428, 186, 33);
+        lblTelfono.setBounds(10, 457, 186, 33);
         add(lblTelfono);
         
         RSTextFieldOne txtRUT = new RSTextFieldOne();
@@ -206,7 +206,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtRUT.setPlaceholder("15625100-3");
         txtRUT.setPhColor(new Color(105, 105, 105));
         txtRUT.setForeground(new Color(25, 25, 112));
-        txtRUT.setBounds(218, 60, 140, 42);
+        txtRUT.setBounds(226, 89, 140, 42);
         ((AbstractDocument) txtRUT.getDocument()).setDocumentFilter(filter);
         add(txtRUT);
         
@@ -227,7 +227,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtNombre.setForeground(new Color(25, 25, 112));
         txtNombre.setFont(new Font("Dubai", Font.BOLD, 20));
         txtNombre.setBorderColor(new Color(3, 33,  57));
-        txtNombre.setBounds(218, 110, 278, 42);
+        txtNombre.setBounds(226, 139, 278, 42);
         ((AbstractDocument) txtNombre.getDocument()).setDocumentFilter(filter);
         add(txtNombre);
         
@@ -248,7 +248,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtApePaterno.setForeground(new Color(25, 25, 112));
         txtApePaterno.setFont(new Font("Dubai", Font.BOLD, 20));
         txtApePaterno.setBorderColor(new Color(3, 33,  57));
-        txtApePaterno.setBounds(218, 159, 278, 42);
+        txtApePaterno.setBounds(226, 188, 278, 42);
         ((AbstractDocument) txtApePaterno.getDocument()).setDocumentFilter(filter);
         add(txtApePaterno);
         
@@ -269,7 +269,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtApeMaterno.setForeground(new Color(25, 25, 112));
         txtApeMaterno.setFont(new Font("Dubai", Font.BOLD, 20));
         txtApeMaterno.setBorderColor(new Color(3, 33,  57));
-        txtApeMaterno.setBounds(218, 212, 278, 42);
+        txtApeMaterno.setBounds(226, 241, 278, 42);
         ((AbstractDocument) txtApeMaterno.getDocument()).setDocumentFilter(filter);
         add(txtApeMaterno);
         
@@ -290,7 +290,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtEmail.setForeground(new Color(25, 25, 112));
         txtEmail.setFont(new Font("Dubai", Font.BOLD, 20));
         txtEmail.setBorderColor(new Color(3, 33,  57));
-        txtEmail.setBounds(218, 319, 278, 42);
+        txtEmail.setBounds(226, 348, 278, 42);
         ((AbstractDocument) txtEmail.getDocument()).setDocumentFilter(filter);
         add(txtEmail);
         
@@ -300,7 +300,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtDir.setForeground(new Color(25, 25, 112));
         txtDir.setFont(new Font("Dubai", Font.BOLD, 20));
         txtDir.setBorderColor(new Color(3, 33, 57));
-        txtDir.setBounds(218, 371, 278, 42);
+        txtDir.setBounds(226, 400, 278, 42);
         add(txtDir);
         
         RSTextFieldOne txtTelefono = new RSTextFieldOne();
@@ -324,8 +324,22 @@ public class RegistroCliente extends javax.swing.JPanel {
         txtTelefono.setForeground(new Color(25, 25, 112));
         txtTelefono.setFont(new Font("Dubai", Font.BOLD, 20));
         txtTelefono.setBorderColor(new Color(3, 33, 57));
-        txtTelefono.setBounds(218, 424, 140, 42);
+        txtTelefono.setBounds(226, 453, 140, 42);
         add(txtTelefono);
+        
+        JLabel lblId = new JLabel("ID:");
+        lblId.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblId.setForeground(new Color(3, 33, 57));
+        lblId.setFont(new Font("Dubai", Font.BOLD, 20));
+        lblId.setBounds(77, 48, 119, 33);
+        add(lblId);
+        
+        JLabel lblID = new JLabel("000000001");
+        lblID.setHorizontalAlignment(SwingConstants.LEFT);
+        lblID.setForeground(new Color(3, 33, 57));
+        lblID.setFont(new Font("Dubai", Font.BOLD, 20));
+        lblID.setBounds(226, 48, 119, 33);
+        add(lblID);
     }// </editor-fold>//GEN-END:initComponents
     private javax.swing.JLabel jLabel1;
     
