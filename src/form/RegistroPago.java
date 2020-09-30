@@ -44,15 +44,14 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import rojeru_san.complementos.RSCustomPopuMenu;
-import javax.swing.JScrollPane;
-import RSMaterialComponent.RSTableMetroCustom;
-import javax.swing.table.DefaultTableModel;
+import RSMaterialComponent.RSComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author RavenPC
  */
-public class BuscarCliente extends javax.swing.JPanel {
+public class RegistroPago extends javax.swing.JPanel {
 
 	private static final String EMAIL_PATTERN = 
 		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -63,7 +62,7 @@ public class BuscarCliente extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public BuscarCliente() {
+    public RegistroPago() {
     	setBackground(new Color(255, 255, 255));
         initComponents();
     }
@@ -84,39 +83,38 @@ public class BuscarCliente extends javax.swing.JPanel {
 
         jLabel1.setBackground(new Color(0, 80, 112));
         jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Buscar  Cliente");
+        jLabel1.setText("Registrar un Pago de Reserva");
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
-        btnshpAgregarCliente.setEnabled(false);
         btnshpAgregarCliente.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "LOS DATOS DEL CLIENTE FUERON ACTUALIZADOS EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
+        		JOptionPane.showMessageDialog(null, "EL CLIENTE FUE GUARDADO EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
         		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
         		//mensaje.setVisible(true);
             	MainMenu.panelBody.removeAll();
-            	MainMenu.panelBody.add(new ModificarCliente());
+            	MainMenu.panelBody.add(new MenuClientes());
             	MainMenu.panelBody.repaint();
             	MainMenu.panelBody.revalidate();
         	
         	}
         });
-        btnshpAgregarCliente.setBounds(49, 531, 211, 63);
+        btnshpAgregarCliente.setBounds(295, 319, 211, 63);
         btnshpAgregarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpAgregarCliente.setForegroundHover(Color.white);
-        btnshpAgregarCliente.backgroundHover = new Color(192, 192, 192);
+        btnshpAgregarCliente.backgroundHover = UIManager.getColor("Button.shadow");
         btnshpAgregarCliente.setBackgroundHover(new Color(3, 33, 57));
         btnshpAgregarCliente.setForegroundText(Color.white);
         btnshpAgregarCliente.setForeground(Color.gray);
         btnshpAgregarCliente.setBackground(new Color(0, 51, 102));
         btnshpAgregarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpAgregarCliente.setText("   ACTUALIZAR");
+        btnshpAgregarCliente.setText("   REGISTRAR PAGO");
         btnshpAgregarCliente.setIcon(FontIcon.of(FontAwesomeSolid.SAVE, 40, Color.white));
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.ROUND);
         
-        RSButtonShape btnshpVolverCliente = new RSButtonShape();
-        btnshpVolverCliente.addActionListener(new ActionListener() {
+        RSButtonShape btnshpBuscarCliente = new RSButtonShape();
+        btnshpBuscarCliente.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
             	MainMenu.panelBody.removeAll();
@@ -125,44 +123,60 @@ public class BuscarCliente extends javax.swing.JPanel {
             	MainMenu.panelBody.revalidate();
         	}
         });
-        btnshpVolverCliente.setBounds(521, 531, 211, 63);
-        btnshpVolverCliente.setFont(new Font("Dubai", Font.BOLD, 13));
-        btnshpVolverCliente.setForegroundHover(new Color(3, 33, 57));
-        btnshpVolverCliente.setBackgroundHover(new Color(128, 128, 128));
-        btnshpVolverCliente.setForegroundText(new Color(3, 33, 57));
-        btnshpVolverCliente.setForeground(new Color(0, 128, 128));
-        btnshpVolverCliente.setBackground(new Color(220, 220, 220));
-        btnshpVolverCliente.setText("   VOLVER");
-        btnshpVolverCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpVolverCliente.setIcon(FontIcon.of(Entypo.BACK, 40, new Color(0, 51, 102)));
-        btnshpVolverCliente.setForma(RSButtonShape.FORMA.ROUND);
+        btnshpBuscarCliente.setBounds(520, 319, 211, 63);
+        btnshpBuscarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
+        btnshpBuscarCliente.setForegroundHover(new Color(3, 33, 57));
+        btnshpBuscarCliente.setBackgroundHover(new Color(128, 128, 128));
+        btnshpBuscarCliente.setForegroundText(new Color(3, 33, 57));
+        btnshpBuscarCliente.setForeground(new Color(0, 128, 128));
+        btnshpBuscarCliente.setBackground(new Color(211, 211, 211));
+        btnshpBuscarCliente.setText("   CANCELAR");
+        btnshpBuscarCliente.setHorizontalAlignment(SwingConstants.CENTER);
+        btnshpBuscarCliente.setIcon(FontIcon.of(Entypo.BLOCK, 40, new Color(0, 51, 102)));
+        btnshpBuscarCliente.setForma(RSButtonShape.FORMA.ROUND);
         
-        JLabel lblRUT = new JLabel("RUT:");
+        JLabel lblRUT = new JLabel("ID de Reserva:");
         lblRUT.setForeground(new Color(3, 33,  57));
-        lblRUT.setBounds(49, 59, 119, 33);
+        lblRUT.setBounds(12, 63, 176, 33);
         lblRUT.setHorizontalAlignment(SwingConstants.RIGHT);
         lblRUT.setFont(new Font("Dubai", Font.BOLD, 20));
+        
+        JLabel lblForma = new JLabel("Forma de Pago:");
+        lblForma.setForeground(new Color(3, 33,  57));
+        lblForma.setBounds(2, 110, 186, 33);
+        lblForma.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblForma.setFont(new Font("Dubai", Font.BOLD, 20));
         setLayout(null);
         add(jLabel1);
         add(btnshpAgregarCliente);
-        add(btnshpVolverCliente);
+        add(btnshpBuscarCliente);
         add(lblRUT);
+        add(lblForma);
         
-        RSTextFieldOne txtRUT = new RSTextFieldOne();
-        txtRUT.setBorderColor(new Color(3, 33,  57));
-        txtRUT.setFont(new Font("Dubai", Font.BOLD, 20));
-        txtRUT.setPlaceholder("15625100-3");
-        txtRUT.setPhColor(new Color(105, 105, 105));
-        txtRUT.setForeground(new Color(25, 25, 112));
-        txtRUT.setBounds(190, 55, 140, 42);
-        ((AbstractDocument) txtRUT.getDocument()).setDocumentFilter(filter);
-        add(txtRUT);
+        JLabel lblApellidoPaterno = new JLabel("Monto:");
+        lblApellidoPaterno.setForeground(new Color(3, 33,  57));
+        lblApellidoPaterno.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblApellidoPaterno.setFont(new Font("Dubai", Font.BOLD, 20));
+        lblApellidoPaterno.setBounds(2, 163, 186, 33);
+        add(lblApellidoPaterno);
+        
+        JLabel lblApellidoAterno = new JLabel("N\u00B0 de Transacci\u00F3n:");
+        lblApellidoAterno.setForeground(new Color(3, 33,  57));
+        lblApellidoAterno.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblApellidoAterno.setFont(new Font("Dubai", Font.BOLD, 20));
+        lblApellidoAterno.setBounds(2, 216, 186, 33);
+        add(lblApellidoAterno);
+        
+        RSTextFieldOne textFieldOne = new RSTextFieldOne();
+        textFieldOne.setPlaceholder("0000001");
+        textFieldOne.setPhColor(SystemColor.controlDkShadow);
+        textFieldOne.setForeground(new Color(25, 25, 112));
+        textFieldOne.setFont(new Font("Dubai", Font.BOLD, 20));
+        textFieldOne.setBorderColor(new Color(3, 33, 57));
+        textFieldOne.setBounds(218, 59, 166, 42);
+        add(textFieldOne);
         
         RSButtonShape btnshpBuscar = new RSButtonShape();
-        btnshpBuscar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
         btnshpBuscar.setText("   BUSCAR");
         btnshpBuscar.setHorizontalAlignment(SwingConstants.CENTER);
         btnshpBuscar.setForma(RSButtonShape.FORMA.ROUND);
@@ -173,47 +187,39 @@ public class BuscarCliente extends javax.swing.JPanel {
         btnshpBuscar.backgroundHover = SystemColor.controlShadow;
         btnshpBuscar.setBackgroundHover(SystemColor.controlShadow);
         btnshpBuscar.setBackground(new Color(0, 51, 102));
-        btnshpBuscar.setIcon(FontIcon.of(FontAwesomeSolid.SEARCH, 24, Color.white));
-        btnshpBuscar.setBounds(358, 54, 140, 42);
+        btnshpBuscar.setIcon(FontIcon.of(FontAwesomeSolid.SEARCH, 25, Color.white));
+        btnshpBuscar.setBounds(409, 63, 147, 37);
         add(btnshpBuscar);
         
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 122, 753, 367);
-        add(scrollPane);
+        RSComboBox comboBox = new RSComboBox();
+        comboBox.setModel(new DefaultComboBoxModel(new String[] {"DEBITO", "CREDITO", "TRANSFERENCIA"}));
+        comboBox.setColorBorde(new Color(3, 33, 57));
+        comboBox.setConBorde(true);
+        comboBox.setFont(new Font("Dubai", Font.BOLD, 16));
+        comboBox.setForeground(new Color(25, 25, 112));
+        comboBox.setColorFondo(new Color(255, 255, 255));
+        comboBox.setColorSeleccion(new Color(25, 25, 112));
+        comboBox.setColorArrow(new Color(25, 25, 112));
+        comboBox.setBounds(218, 111, 166, 32);
+        add(comboBox);
         
-        RSTableMetroCustom tblCliente = new RSTableMetroCustom();
-        tblCliente.setFont(new Font("Dubai", Font.BOLD, 12));
-        tblCliente.setFontHead(new Font("Dubai", Font.BOLD, 14));
-        tblCliente.setColorSecundaryText(new Color(0, 0, 128));
-        tblCliente.setBackgoundHover(new Color(47, 79, 79));
-        tblCliente.setBackgoundHead(new Color(0, 128, 128));
-        tblCliente.setColorPrimaryText(new Color(25, 25, 112));
-        tblCliente.setShowVerticalLines(true);
-        tblCliente.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null},
-        	},
-        	new String[] {
-        		"ID CLIENTE", "RUT", "NOMBRE", "EMAIL", "ARRIENDO ACTIVO"
-        	}
-        ));
-        scrollPane.setViewportView(tblCliente);
+        RSTextFieldOne txtMonto = new RSTextFieldOne();
+        txtMonto.setPlaceholder("");
+        txtMonto.setPhColor(SystemColor.controlDkShadow);
+        txtMonto.setForeground(new Color(25, 25, 112));
+        txtMonto.setFont(new Font("Dubai", Font.BOLD, 20));
+        txtMonto.setBorderColor(new Color(3, 33, 57));
+        txtMonto.setBounds(218, 159, 166, 42);
+        add(txtMonto);
         
-        RSButtonShape btnshpDeshabilitar = new RSButtonShape();
-        btnshpDeshabilitar.setEnabled(false);
-        btnshpDeshabilitar.setText("   DESHABILITAR");
-        btnshpDeshabilitar.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpDeshabilitar.setForma(RSButtonShape.FORMA.ROUND);
-        btnshpDeshabilitar.setForegroundText(Color.WHITE);
-        btnshpDeshabilitar.setForegroundHover(Color.WHITE);
-        btnshpDeshabilitar.setForeground(Color.GRAY);
-        btnshpDeshabilitar.setFont(new Font("Dubai", Font.BOLD, 13));
-        btnshpDeshabilitar.backgroundHover = SystemColor.controlShadow;
-        btnshpDeshabilitar.setBackgroundHover(new Color(220, 20, 60));
-        btnshpDeshabilitar.setBackground(new Color(165, 42, 42));
-        btnshpDeshabilitar.setIcon(FontIcon.of(Entypo.BLOCK, 40, Color.white));
-        btnshpDeshabilitar.setBounds(284, 531, 211, 63);
-        add(btnshpDeshabilitar);
+        RSTextFieldOne txtTransac = new RSTextFieldOne();
+        txtTransac.setPlaceholder("");
+        txtTransac.setPhColor(SystemColor.controlDkShadow);
+        txtTransac.setForeground(new Color(25, 25, 112));
+        txtTransac.setFont(new Font("Dubai", Font.BOLD, 20));
+        txtTransac.setBorderColor(new Color(3, 33, 57));
+        txtTransac.setBounds(218, 212, 166, 42);
+        add(txtTransac);
     }// </editor-fold>//GEN-END:initComponents
     private javax.swing.JLabel jLabel1;
     

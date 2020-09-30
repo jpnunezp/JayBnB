@@ -52,7 +52,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author RavenPC
  */
-public class BuscarCliente extends javax.swing.JPanel {
+public class BuscarEmpTransporte extends javax.swing.JPanel {
 
 	private static final String EMAIL_PATTERN = 
 		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -63,7 +63,7 @@ public class BuscarCliente extends javax.swing.JPanel {
     /**
      * Creates new form Panel1
      */
-    public BuscarCliente() {
+    public BuscarEmpTransporte() {
     	setBackground(new Color(255, 255, 255));
         initComponents();
     }
@@ -84,7 +84,7 @@ public class BuscarCliente extends javax.swing.JPanel {
 
         jLabel1.setBackground(new Color(0, 80, 112));
         jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Buscar  Cliente");
+        jLabel1.setText("Buscar  Empresa de Transporte");
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
@@ -137,9 +137,9 @@ public class BuscarCliente extends javax.swing.JPanel {
         btnshpVolverCliente.setIcon(FontIcon.of(Entypo.BACK, 40, new Color(0, 51, 102)));
         btnshpVolverCliente.setForma(RSButtonShape.FORMA.ROUND);
         
-        JLabel lblRUT = new JLabel("RUT:");
+        JLabel lblRUT = new JLabel("Nombre de la Empresa:");
         lblRUT.setForeground(new Color(3, 33,  57));
-        lblRUT.setBounds(49, 59, 119, 33);
+        lblRUT.setBounds(20, 59, 211, 33);
         lblRUT.setHorizontalAlignment(SwingConstants.RIGHT);
         lblRUT.setFont(new Font("Dubai", Font.BOLD, 20));
         setLayout(null);
@@ -151,10 +151,10 @@ public class BuscarCliente extends javax.swing.JPanel {
         RSTextFieldOne txtRUT = new RSTextFieldOne();
         txtRUT.setBorderColor(new Color(3, 33,  57));
         txtRUT.setFont(new Font("Dubai", Font.BOLD, 20));
-        txtRUT.setPlaceholder("15625100-3");
+        txtRUT.setPlaceholder("");
         txtRUT.setPhColor(new Color(105, 105, 105));
         txtRUT.setForeground(new Color(25, 25, 112));
-        txtRUT.setBounds(190, 55, 140, 42);
+        txtRUT.setBounds(241, 55, 237, 42);
         ((AbstractDocument) txtRUT.getDocument()).setDocumentFilter(filter);
         add(txtRUT);
         
@@ -174,7 +174,7 @@ public class BuscarCliente extends javax.swing.JPanel {
         btnshpBuscar.setBackgroundHover(SystemColor.controlShadow);
         btnshpBuscar.setBackground(new Color(0, 51, 102));
         btnshpBuscar.setIcon(FontIcon.of(FontAwesomeSolid.SEARCH, 24, Color.white));
-        btnshpBuscar.setBounds(358, 54, 140, 42);
+        btnshpBuscar.setBounds(506, 56, 140, 42);
         add(btnshpBuscar);
         
         JScrollPane scrollPane = new JScrollPane();
@@ -194,9 +194,13 @@ public class BuscarCliente extends javax.swing.JPanel {
         		{null, null, null, null, null},
         	},
         	new String[] {
-        		"ID CLIENTE", "RUT", "NOMBRE", "EMAIL", "ARRIENDO ACTIVO"
+        		"ID EMPRESA", "NOMBRE CONDUCTOR", "TIPO VEHICULO", "COMUNA", "DISPONIBLE DESDE"
         	}
         ));
+        tblCliente.getColumnModel().getColumn(1).setPreferredWidth(166);
+        tblCliente.getColumnModel().getColumn(2).setPreferredWidth(109);
+        tblCliente.getColumnModel().getColumn(3).setPreferredWidth(88);
+        tblCliente.getColumnModel().getColumn(4).setPreferredWidth(105);
         scrollPane.setViewportView(tblCliente);
         
         RSButtonShape btnshpDeshabilitar = new RSButtonShape();

@@ -53,6 +53,10 @@ public class MainMenu extends javax.swing.JFrame {
     	setTitle("JayBnB :: Sistema de Arriendo de Propiedades");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu.class.getResource("/Recursos/jaybnb_6iv_icon.ico")));
     	setResizable(false);
+    	panelBody.removeAll();
+    	panelBody.add(new MenuDashboard());
+        panelBody.repaint();
+        panelBody.revalidate();
         initComponents();
         execute();
     }
@@ -266,7 +270,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelHeader.setBackground(new Color(211, 211, 211));
+        panelHeader.setBackground(new Color(255, 255, 255));
         panelHeader.setPreferredSize(new Dimension(561, 75));
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
