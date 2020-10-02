@@ -167,14 +167,29 @@ public class RegistroPago extends javax.swing.JPanel {
         lblApellidoAterno.setBounds(2, 216, 186, 33);
         add(lblApellidoAterno);
         
-        RSTextFieldOne textFieldOne = new RSTextFieldOne();
-        textFieldOne.setPlaceholder("0000001");
-        textFieldOne.setPhColor(SystemColor.controlDkShadow);
-        textFieldOne.setForeground(new Color(25, 25, 112));
-        textFieldOne.setFont(new Font("Dubai", Font.BOLD, 20));
-        textFieldOne.setBorderColor(new Color(3, 33, 57));
-        textFieldOne.setBounds(218, 59, 166, 42);
-        add(textFieldOne);
+        RSTextFieldOne txtIDReserva = new RSTextFieldOne();
+        txtIDReserva.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtIDReserva.getText().length() >= 9;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
+        txtIDReserva.setPlaceholder("0000001");
+        txtIDReserva.setPhColor(SystemColor.controlDkShadow);
+        txtIDReserva.setForeground(new Color(25, 25, 112));
+        txtIDReserva.setFont(new Font("Dubai", Font.BOLD, 20));
+        txtIDReserva.setBorderColor(new Color(3, 33, 57));
+        txtIDReserva.setBounds(218, 59, 166, 42);
+        add(txtIDReserva);
         
         RSButtonShape btnshpBuscar = new RSButtonShape();
         btnshpBuscar.setText("   BUSCAR");
@@ -204,6 +219,21 @@ public class RegistroPago extends javax.swing.JPanel {
         add(comboBox);
         
         RSTextFieldOne txtMonto = new RSTextFieldOne();
+        txtMonto.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtMonto.getText().length() >= 9;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtMonto.setPlaceholder("");
         txtMonto.setPhColor(SystemColor.controlDkShadow);
         txtMonto.setForeground(new Color(25, 25, 112));
@@ -213,6 +243,21 @@ public class RegistroPago extends javax.swing.JPanel {
         add(txtMonto);
         
         RSTextFieldOne txtTransac = new RSTextFieldOne();
+        txtTransac.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtTransac.getText().length() >= 9;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtTransac.setPlaceholder("");
         txtTransac.setPhColor(SystemColor.controlDkShadow);
         txtTransac.setForeground(new Color(25, 25, 112));

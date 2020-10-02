@@ -18,5 +18,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="RSMaterialComponents_3.0.jar"/>
+	<classpathentry kind="lib" path="RojeruSan.full_9.6.jar"/>
+	<classpathentry kind="lib" path="RSNotify v1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -19,6 +19,8 @@ import form.MenuUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Enumeration;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +41,7 @@ import java.awt.Font;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
+
 /**
  *
  * @author RavenPC
@@ -53,11 +56,11 @@ public class MainMenu extends javax.swing.JFrame {
     	setTitle("JayBnB :: Sistema de Arriendo de Propiedades");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu.class.getResource("/Recursos/jaybnb_6iv_icon.ico")));
     	setResizable(false);
+        initComponents();
     	panelBody.removeAll();
     	panelBody.add(new MenuDashboard());
         panelBody.repaint();
         panelBody.revalidate();
-        initComponents();
         execute();
     }
 
@@ -382,7 +385,6 @@ public class MainMenu extends javax.swing.JFrame {
 		menuClientes.setVisible(false);
 		menuPropiedades.setVisible(true);
 	}
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     MenuClientes menuClientes = new MenuClientes();
