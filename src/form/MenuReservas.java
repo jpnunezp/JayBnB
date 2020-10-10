@@ -6,6 +6,7 @@
 package form;
 import javax.swing.SwingConstants;
 
+import org.kordamp.ikonli.entypo.Entypo;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.swing.FontIcon;
 
@@ -20,9 +21,12 @@ import java.awt.Font;
 import necesario.Global.THEMETOOLTIP;
 import RSMaterialComponent.RSButtonShapeIcon;
 import RSMaterialComponent.RSButtonShapeIcon.FORMA;
+import Vista.MainMenu;
 import RSMaterialComponent.RSButtonShape;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -57,6 +61,15 @@ public class MenuReservas extends javax.swing.JPanel {
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
+        btnshpAgregarCliente.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new RegistroReserva());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+        	}
+        });
         btnshpAgregarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpAgregarCliente.setForegroundHover(new Color(3, 33, 57));
         btnshpAgregarCliente.backgroundHover = UIManager.getColor("Button.shadow");
@@ -70,6 +83,15 @@ public class MenuReservas extends javax.swing.JPanel {
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.RECT);
         
         RSButtonShape btnshpBuscarCliente = new RSButtonShape();
+        btnshpBuscarCliente.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new BuscarReserva());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+        	}
+        });
         btnshpBuscarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpBuscarCliente.setForegroundHover(new Color(3, 33, 57));
         btnshpBuscarCliente.setBackgroundHover(new Color(220, 220, 220));
@@ -82,15 +104,24 @@ public class MenuReservas extends javax.swing.JPanel {
         btnshpBuscarCliente.setForma(RSButtonShape.FORMA.RECT);
         
         RSButtonShape btnshpSctualizarCliente = new RSButtonShape();
+        btnshpSctualizarCliente.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new AnularReserva());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+        	}
+        });
         btnshpSctualizarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpSctualizarCliente.setForegroundHover(new Color(3, 33, 57));
         btnshpSctualizarCliente.setBackgroundHover(new Color(220, 220, 220));
         btnshpSctualizarCliente.setForegroundText(new Color(3, 33, 57));
         btnshpSctualizarCliente.setForeground(new Color(0, 128, 128));
         btnshpSctualizarCliente.setBackground(Color.WHITE);
-        btnshpSctualizarCliente.setText("   MODIFICAR RESERVA");
+        btnshpSctualizarCliente.setText("   ANULAR RESERVA");
         btnshpSctualizarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpSctualizarCliente.setIcon(FontIcon.of(FontAwesomeSolid.EDIT, 40, new Color(0, 51, 102)));
+        btnshpSctualizarCliente.setIcon(FontIcon.of(Entypo.BLOCK, 40, new Color(0, 51, 102)));
         btnshpSctualizarCliente.setForma(RSButtonShape.FORMA.RECT);
         
         RSButtonShape btnshpListarClientes = new RSButtonShape();

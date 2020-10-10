@@ -20,9 +20,12 @@ import java.awt.Font;
 import necesario.Global.THEMETOOLTIP;
 import RSMaterialComponent.RSButtonShapeIcon;
 import RSMaterialComponent.RSButtonShapeIcon.FORMA;
+import Vista.MainMenu;
 import RSMaterialComponent.RSButtonShape;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -57,6 +60,13 @@ public class MenuPropiedades extends javax.swing.JPanel {
         jLabel1.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
+        btnshpAgregarCliente.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		RegistroPropiedad propiedad = new RegistroPropiedad();
+        		propiedad.setVisible(true);
+        	}
+        });
         btnshpAgregarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpAgregarCliente.setForegroundHover(new Color(3, 33, 57));
         btnshpAgregarCliente.backgroundHover = UIManager.getColor("Button.shadow");

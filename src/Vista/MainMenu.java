@@ -40,6 +40,7 @@ import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 /**
@@ -58,7 +59,6 @@ public class MainMenu extends javax.swing.JFrame {
     	setResizable(false);
         initComponents();
     	panelBody.removeAll();
-    	panelBody.add(new MenuDashboard());
         panelBody.repaint();
         panelBody.revalidate();
         execute();
