@@ -59,13 +59,16 @@ public class MenuPropiedades extends javax.swing.JPanel {
         jLabel1.setText("Mantenedor de Propiedades");
         jLabel1.setOpaque(true);
         
+
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
         btnshpAgregarCliente.addActionListener(new ActionListener() {
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        		RegistroPropiedad propiedad = new RegistroPropiedad();
-        		propiedad.setVisible(true);
-        	}
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new RegistroPropiedad2());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+            }
         });
         btnshpAgregarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpAgregarCliente.setForegroundHover(new Color(3, 33, 57));
@@ -114,15 +117,35 @@ public class MenuPropiedades extends javax.swing.JPanel {
         btnshpListarClientes.setHorizontalAlignment(SwingConstants.CENTER);
         btnshpListarClientes.setIcon(FontIcon.of(FontAwesomeSolid.LIST, 40, new Color(0, 51, 102)));
         btnshpListarClientes.setForma(RSButtonShape.FORMA.RECT);
+        
+        RSButtonShape btnshpAgregarImagenes = new RSButtonShape();
+        btnshpAgregarImagenes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
+        btnshpAgregarImagenes.setText(" SUBIR IMAGENES");
+        btnshpAgregarImagenes.setHorizontalAlignment(SwingConstants.CENTER);
+        btnshpAgregarImagenes.setForma(RSButtonShape.FORMA.RECT);
+        btnshpAgregarImagenes.setForegroundText(new Color(3, 33, 57));
+        btnshpAgregarImagenes.setForegroundHover(new Color(3, 33, 57));
+        btnshpAgregarImagenes.setForeground(new Color(0, 128, 128));
+        btnshpAgregarImagenes.setFont(new Font("Dubai", Font.BOLD, 13));
+        btnshpAgregarImagenes.backgroundHover = new Color(220, 220, 220);
+        btnshpAgregarImagenes.setBackgroundHover(new Color(220, 220, 220));
+        btnshpAgregarImagenes.setIcon(FontIcon.of(FontAwesomeSolid.CAMERA_RETRO, 40, new Color(0, 51, 102)));
+        btnshpAgregarImagenes.setBackground(Color.WHITE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
-        		.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+        		.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(31)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(btnshpListarClientes, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnshpListarClientes, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+        					.addGap(29)
+        					.addComponent(btnshpAgregarImagenes, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(btnshpAgregarCliente, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
         					.addGap(18)
@@ -142,9 +165,11 @@ public class MenuPropiedades extends javax.swing.JPanel {
         						.addComponent(btnshpAgregarCliente, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
         						.addComponent(btnshpBuscarCliente, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
         					.addGap(18)
-        					.addComponent(btnshpListarClientes, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(btnshpAgregarImagenes, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(btnshpListarClientes, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)))
         				.addComponent(btnshpSctualizarCliente, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(168, Short.MAX_VALUE))
+        			.addContainerGap(388, Short.MAX_VALUE))
         );
         this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents

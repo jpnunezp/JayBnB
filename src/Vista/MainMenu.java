@@ -59,6 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
     	setResizable(false);
         initComponents();
     	panelBody.removeAll();
+    	panelBody.add( new MenuDashboard());
         panelBody.repaint();
         panelBody.revalidate();
         execute();
