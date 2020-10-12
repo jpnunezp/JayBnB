@@ -59,20 +59,21 @@ import javax.swing.JTextArea;
  *
  * @author RavenPC
  */
-public class RegistroPropiedad2 extends javax.swing.JPanel {
+public class ModificarPropiedad extends javax.swing.JPanel {
 
 	private static final String EMAIL_PATTERN = 
 		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	DocumentFilter filter = new UppercaseDocumentFilter();
+	Propiedad prop = new Propiedad();
 	
     /**
      * Creates new form Panel1
      */
-    public RegistroPropiedad2() {
+    public ModificarPropiedad(String rol) {
     	setBackground(new Color(255, 255, 255));
-        initComponents();
+        initComponents(rol);
     }
 
     /**
@@ -82,8 +83,11 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+    private void initComponents(String rol) {
+    	Propiedad modiprop = new Propiedad();
+    	
+    	modiprop = traerPropiedad(rol);
+    	
         jLabel1 = new javax.swing.JLabel();
         jLabel1.setBounds(0, 0, 785, 37);
         jLabel1.setForeground(new Color(255, 255, 255));
@@ -91,7 +95,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
 
         jLabel1.setBackground(new Color(0, 80, 112));
         jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Registrar una Propiedad");
+        jLabel1.setText("Modificar la Propiedad ROL: "+modiprop.getRol_propie());
         jLabel1.setOpaque(true);
         
         RSButtonShape btnGuardar = new RSButtonShape();
@@ -114,7 +118,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         	@Override
         	public void actionPerformed(ActionEvent e) {
             	MainMenu.panelBody.removeAll();
-            	MainMenu.panelBody.add(new MenuPropiedades());
+            	MainMenu.panelBody.add(new BuscarPropiedad());
             	MainMenu.panelBody.repaint();
             	MainMenu.panelBody.revalidate();
         	}
@@ -164,12 +168,14 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_4);
         
         RSTextFieldOne txtROL = new RSTextFieldOne();
-        txtROL.setPlaceholder("00000-00000");
+        txtROL.setPlaceholder("0001");
         txtROL.setPhColor(SystemColor.controlDkShadow);
         txtROL.setForeground(new Color(25, 25, 112));
         txtROL.setFont(new Font("Dubai", Font.BOLD, 16));
         txtROL.setBorderColor(new Color(3, 33, 57));
         txtROL.setBounds(175, 52, 145, 28);
+        txtROL.setEnabled(false);
+        txtROL.setText(modiprop.getRol_propie());
         add(txtROL);
         
         RSTextFieldOne txtNomPropiedad = new RSTextFieldOne();
@@ -179,6 +185,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtNomPropiedad.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNomPropiedad.setBorderColor(new Color(3, 33, 57));
         txtNomPropiedad.setBounds(175, 86, 261, 28);
+        txtNomPropiedad.setText(modiprop.getNom_propiedad());
         add(txtNomPropiedad);
         
         RSTextFieldOne txtDirec = new RSTextFieldOne();
@@ -188,6 +195,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtDirec.setFont(new Font("Dubai", Font.BOLD, 16));
         txtDirec.setBorderColor(new Color(3, 33, 57));
         txtDirec.setBounds(175, 122, 261, 28);
+        txtDirec.setText(modiprop.getDireccion());
         add(txtDirec);
         
         RSComboBox cmbComuna = new RSComboBox();
@@ -208,6 +216,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtNomDueno.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNomDueno.setBorderColor(new Color(3, 33, 57));
         txtNomDueno.setBounds(175, 202, 261, 28);
+        txtNomDueno.setText(modiprop.getNom_propietario());
         add(txtNomDueno);
         
         JLabel label_6 = new JLabel("RUT Propietario:");
@@ -224,6 +233,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtRutDueno.setFont(new Font("Dubai", Font.BOLD, 16));
         txtRutDueno.setBorderColor(new Color(3, 33, 57));
         txtRutDueno.setBounds(175, 241, 135, 28);
+        txtNomDueno.setText(modiprop.getRun_propie());
         add(txtRutDueno);
         
         JLabel label_7 = new JLabel("Nombre Propietario:");
@@ -247,6 +257,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtEvaFiscal.setFont(new Font("Dubai", Font.BOLD, 16));
         txtEvaFiscal.setBorderColor(new Color(3, 33, 57));
         txtEvaFiscal.setBounds(609, 51, 135, 32);
+        txtEvaFiscal.setText(String.valueOf(modiprop.getAvaluo_fiscal()));
         add(txtEvaFiscal);
         
         JLabel label_9 = new JLabel("Valor de Compra:");
@@ -263,6 +274,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtValorCompra.setFont(new Font("Dubai", Font.BOLD, 16));
         txtValorCompra.setBorderColor(new Color(3, 33, 57));
         txtValorCompra.setBounds(609, 86, 135, 32);
+        txtValorCompra.setText(String.valueOf(modiprop.getValor_compra()));
         add(txtValorCompra);
         
         JLabel label_10 = new JLabel("Gastos Comunes:");
@@ -279,6 +291,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtGastoComun.setFont(new Font("Dubai", Font.BOLD, 16));
         txtGastoComun.setBorderColor(new Color(3, 33, 57));
         txtGastoComun.setBounds(609, 122, 135, 32);
+        txtGastoComun.setText(String.valueOf(modiprop.getValor_gastoc()));
         add(txtGastoComun);
         
         JLabel label_11 = new JLabel("Gastos B\u00E1sicos:");
@@ -295,6 +308,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtGastoBasico.setFont(new Font("Dubai", Font.BOLD, 16));
         txtGastoBasico.setBorderColor(new Color(3, 33, 57));
         txtGastoBasico.setBounds(609, 159, 135, 32);
+        txtGastoBasico.setText(String.valueOf(modiprop.getValor_gastobasic()));
         add(txtGastoBasico);
         
         JLabel label_12 = new JLabel("Contribuciones:");
@@ -311,6 +325,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtContribu.setFont(new Font("Dubai", Font.BOLD, 16));
         txtContribu.setBorderColor(new Color(3, 33, 57));
         txtContribu.setBounds(609, 197, 135, 32);
+        txtContribu.setText(String.valueOf(modiprop.getPago_contri()));
         add(txtContribu);
         
         JLabel label_13 = new JLabel("Valor Inventario:");
@@ -327,6 +342,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtValorInvent.setFont(new Font("Dubai", Font.BOLD, 16));
         txtValorInvent.setBorderColor(new Color(3, 33, 57));
         txtValorInvent.setBounds(609, 239, 135, 32);
+        txtValorInvent.setText(String.valueOf(modiprop.getInven_valori()));
         add(txtValorInvent);
         
         JLabel label_14 = new JLabel("Valor Noche:");
@@ -343,6 +359,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         txtValorNoche.setFont(new Font("Dubai", Font.BOLD, 16));
         txtValorNoche.setBorderColor(new Color(3, 33, 57));
         txtValorNoche.setBounds(609, 279, 135, 32);
+        txtValorNoche.setText(String.valueOf(modiprop.getValor_noche()));
         add(txtValorNoche);
         
         JLabel label_15 = new JLabel("N\u00B0 de Habitaciones:");
@@ -353,12 +370,13 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_15);
         
         RSTextFieldOne txtNumHabita = new RSTextFieldOne();
-        txtNumHabita.setPlaceholder("1");
+        txtNumHabita.setPlaceholder("3");
         txtNumHabita.setPhColor(SystemColor.controlDkShadow);
         txtNumHabita.setForeground(new Color(25, 25, 112));
         txtNumHabita.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNumHabita.setBorderColor(new Color(3, 33, 57));
         txtNumHabita.setBounds(175, 281, 45, 28);
+        txtNumHabita.setText(String.valueOf(modiprop.getNum_habita()));
         add(txtNumHabita);
         
         JLabel label_16 = new JLabel("Max. Ocupantes:");
@@ -369,12 +387,13 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_16);
         
         RSTextFieldOne txtMaxOcupa = new RSTextFieldOne();
-        txtMaxOcupa.setPlaceholder("1");
+        txtMaxOcupa.setPlaceholder("3");
         txtMaxOcupa.setPhColor(SystemColor.controlDkShadow);
         txtMaxOcupa.setForeground(new Color(25, 25, 112));
         txtMaxOcupa.setFont(new Font("Dubai", Font.BOLD, 16));
         txtMaxOcupa.setBorderColor(new Color(3, 33, 57));
         txtMaxOcupa.setBounds(424, 282, 45, 28);
+        txtMaxOcupa.setText(String.valueOf(modiprop.getCant_max_ocu()));
         add(txtMaxOcupa);
         
         JLabel label_17 = new JLabel("N\u00B0 de Ba\u00F1os:");
@@ -385,12 +404,13 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_17);
         
         RSTextFieldOne txtNumBano = new RSTextFieldOne();
-        txtNumBano.setPlaceholder("1");
+        txtNumBano.setPlaceholder("3");
         txtNumBano.setPhColor(SystemColor.controlDkShadow);
         txtNumBano.setForeground(new Color(25, 25, 112));
         txtNumBano.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNumBano.setBorderColor(new Color(3, 33, 57));
         txtNumBano.setBounds(175, 318, 45, 28);
+        txtNumBano.setText(String.valueOf(modiprop.getNum_banno()));
         add(txtNumBano);
         
         JLabel label_18 = new JLabel("N\u00B0 de Bodegas:");
@@ -401,12 +421,13 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_18);
         
         RSTextFieldOne txtNumBodega = new RSTextFieldOne();
-        txtNumBodega.setPlaceholder("1");
+        txtNumBodega.setPlaceholder("3");
         txtNumBodega.setPhColor(SystemColor.controlDkShadow);
         txtNumBodega.setForeground(new Color(25, 25, 112));
         txtNumBodega.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNumBodega.setBorderColor(new Color(3, 33, 57));
         txtNumBodega.setBounds(424, 318, 45, 28);
+        txtNumBodega.setText(String.valueOf(modiprop.getNum_bodega()));
         add(txtNumBodega);
         
         JLabel label_19 = new JLabel("N\u00B0 de Estacionamiento:");
@@ -417,21 +438,23 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_19);
         
         RSTextFieldOne txtNumEstacio = new RSTextFieldOne();
-        txtNumEstacio.setPlaceholder("1");
+        txtNumEstacio.setPlaceholder("3");
         txtNumEstacio.setPhColor(SystemColor.controlDkShadow);
         txtNumEstacio.setForeground(new Color(25, 25, 112));
         txtNumEstacio.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNumEstacio.setBorderColor(new Color(3, 33, 57));
         txtNumEstacio.setBounds(424, 362, 45, 28);
+        txtNumEstacio.setText(String.valueOf(modiprop.getNum_estaci()));
         add(txtNumEstacio);
         
         RSTextFieldOne txtNumCocina = new RSTextFieldOne();
-        txtNumCocina.setPlaceholder("1");
+        txtNumCocina.setPlaceholder("3");
         txtNumCocina.setPhColor(SystemColor.controlDkShadow);
         txtNumCocina.setForeground(new Color(25, 25, 112));
         txtNumCocina.setFont(new Font("Dubai", Font.BOLD, 16));
         txtNumCocina.setBorderColor(new Color(3, 33, 57));
         txtNumCocina.setBounds(175, 362, 45, 28);
+        txtNumCocina.setText(String.valueOf(modiprop.getNum_cocina()));
         add(txtNumCocina);
         
         JLabel label_20 = new JLabel("N\u00B0 de Cocinas:");
@@ -449,12 +472,13 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_21);
         
         RSTextFieldOne txtMetros = new RSTextFieldOne();
-        txtMetros.setPlaceholder("1");
+        txtMetros.setPlaceholder("3");
         txtMetros.setPhColor(SystemColor.controlDkShadow);
         txtMetros.setForeground(new Color(25, 25, 112));
         txtMetros.setFont(new Font("Dubai", Font.BOLD, 16));
         txtMetros.setBorderColor(new Color(3, 33, 57));
         txtMetros.setBounds(175, 403, 45, 28);
+        txtMetros.setText(String.valueOf(modiprop.getMetros()));
         add(txtMetros);
         
         RSComboBox cmbJardin = new RSComboBox();
@@ -489,12 +513,16 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         
         JTextArea txtCaracteris = new JTextArea();
         txtCaracteris.setFont(new Font("Dubai", Font.BOLD, 14));
+        txtCaracteris.setText(modiprop.getCaracteris());
         scrollPane.setViewportView(txtCaracteris);
         
         
         btnGuardar.addActionListener(new ActionListener() {
+        	
         	@Override
         	public void actionPerformed(ActionEvent e) {
+        		JOptionPane.showMessageDialog(null, "Falta completar este módulo");
+        		/*
         		ConectPropiedades cprop = new ConectPropiedades();
         		ArrayList<Propiedad> lista = new ArrayList<Propiedad>();
         		lista = cprop.listarPropiedades();
@@ -538,7 +566,7 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
 				}else {
 					txtROL.requestFocus();
 				}
-        		
+        		*/
         		      	
         		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
         		//mensaje.setVisible(true);
@@ -553,6 +581,14 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         });
         
     }// </editor-fold>//GEN-END:initComponents
+    
+    public Propiedad traerPropiedad(String rol) {
+		ConectPropiedades cprop = new ConectPropiedades();
+    	prop = cprop.buscarPropiedad(rol);	
+    	
+    	return prop;
+	}
+    
     private javax.swing.JLabel jLabel1;
     
     class UppercaseDocumentFilter extends DocumentFilter {

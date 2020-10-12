@@ -81,24 +81,21 @@ public class MenuItem extends javax.swing.JPanel {
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
+        			.addGap(26)
         			.addComponent(lbIcon, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(lbName, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(lbName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addContainerGap())
-        		.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        		.addComponent(separator, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 126, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(lbName, GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-        					.addGap(1))
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(lbIcon, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-        					.addPreferredGap(ComponentPlacement.RELATED)))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lbName, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+        				.addComponent(lbIcon, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE))
         );
         this.setLayout(layout);

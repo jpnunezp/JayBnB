@@ -83,6 +83,15 @@ public class MenuPropiedades extends javax.swing.JPanel {
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.RECT);
         
         RSButtonShape btnshpBuscarCliente = new RSButtonShape();
+        btnshpBuscarCliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new BuscarPropiedad());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+            }
+        });
         btnshpBuscarCliente.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpBuscarCliente.setForegroundHover(new Color(3, 33, 57));
         btnshpBuscarCliente.setBackgroundHover(new Color(220, 220, 220));
@@ -107,6 +116,15 @@ public class MenuPropiedades extends javax.swing.JPanel {
         btnshpSctualizarCliente.setForma(RSButtonShape.FORMA.RECT);
         
         RSButtonShape btnshpListarClientes = new RSButtonShape();
+        btnshpListarClientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            	MainMenu.panelBody.removeAll();
+            	MainMenu.panelBody.add(new ListarPropiedad());
+            	MainMenu.panelBody.repaint();
+            	MainMenu.panelBody.revalidate();
+            }
+        });
         btnshpListarClientes.setFont(new Font("Dubai", Font.BOLD, 13));
         btnshpListarClientes.setForegroundHover(new Color(3, 33, 57));
         btnshpListarClientes.setBackgroundHover(new Color(220, 220, 220));
