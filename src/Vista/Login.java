@@ -54,6 +54,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private RSTextFieldOne txtUsername = new RSTextFieldOne();
 	private String contra;
+	Usuario usuario = new Usuario();
 	/**
 	 * Launch the application.
 	 */
@@ -101,6 +102,7 @@ public class Login extends JFrame {
 		Color color = new Color(1);
 		FontIcon icon = FontIcon.of(FontAwesomeSolid.USER_CIRCLE, 85, color.BLACK);
 		lblIconUser.setIcon(icon);
+		txtUsername.setPhColor(Color.GRAY);
 		txtUsername.setForeground(new Color(46, 139, 87));
 		
 
@@ -111,7 +113,7 @@ public class Login extends JFrame {
 		contentPane.add(txtUsername);
 		
 		RSButtonShape btnshpIngresar = new RSButtonShape();
-		btnshpIngresar.setFont(new Font("Dialog", Font.BOLD, 28));
+		btnshpIngresar.setFont(new Font("Dubai", Font.BOLD, 32));
 		btnshpIngresar.setHorizontalAlignment(SwingConstants.CENTER);
 		btnshpIngresar.setText("Ingresar");
 		btnshpIngresar.setBackgroundHover(new Color(30, 144, 255));
@@ -130,17 +132,18 @@ public class Login extends JFrame {
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEmail.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblEmail.setFont(new Font("Dubai", Font.BOLD, 26));
 		lblEmail.setBounds(236, 374, 118, 52);
 		contentPane.add(lblEmail);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblContrasea.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblContrasea.setFont(new Font("Dubai", Font.BOLD, 26));
 		lblContrasea.setBounds(140, 441, 214, 52);
 		contentPane.add(lblContrasea);
 		
 		RSPasswordOne passwordOne = new RSPasswordOne();
+		passwordOne.setPhColor(Color.GRAY);
 		passwordOne.setForeground(new Color(46, 139, 87));
 		passwordOne.setFont(new Font("Tahoma", Font.BOLD, 24));
 		passwordOne.setPlaceholder("***");
@@ -150,7 +153,7 @@ public class Login extends JFrame {
 		passwordOne.addFocusListener(null);
 		
 		JLabel lblNewLabel_3 = new JLabel("Bienvenidos a");
-		lblNewLabel_3.setFont(new Font("Dialog", Font.BOLD, 52));
+		lblNewLabel_3.setFont(new Font("Dubai", Font.BOLD, 58));
 		lblNewLabel_3.setBounds(343, 173, 380, 61);
 		contentPane.add(lblNewLabel_3);
 		
@@ -162,7 +165,7 @@ public class Login extends JFrame {
 			}
 		});
 		lblolvidSuContrasea.setHorizontalAlignment(SwingConstants.CENTER);
-		lblolvidSuContrasea.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblolvidSuContrasea.setFont(new Font("Dubai", Font.BOLD, 26));
 		lblolvidSuContrasea.setBounds(366, 633, 355, 52);
 		contentPane.add(lblolvidSuContrasea);
 		
@@ -193,7 +196,8 @@ public class Login extends JFrame {
 		ValidarLogin vl = new ValidarLogin();
 		boolean resu = vl.getPass(txtUsername.getText(), contra);
 		if (resu) {
-			MainMenu mp = new MainMenu();
+			usuario = vl.usuarioActual(txtUsername.getText());
+			MainMenu mp = new MainMenu(usuario);
 			mp.setVisible(true);
 			dispose();
 		} else {

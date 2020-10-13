@@ -113,7 +113,7 @@ public class RegistroDetalleProp extends javax.swing.JPanel {
         	@Override
         	public void actionPerformed(ActionEvent e) {
         		tablatoDB();
-        		JOptionPane.showMessageDialog(null, "EL CLIENTE FUE GUARDADO EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
+        		JOptionPane.showMessageDialog(null, "Eñ Inventario se actualizó exitosamente", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);      	
         		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
         		//mensaje.setVisible(true);
             	MainMenu.panelBody.removeAll();

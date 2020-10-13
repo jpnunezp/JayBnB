@@ -35,8 +35,12 @@ import org.kordamp.ikonli.entypo.Entypo;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.swing.FontIcon;
 
+import Modelo.Usuario;
+
 import javax.swing.GroupLayout;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.BorderLayout;
@@ -51,14 +55,15 @@ import javax.swing.JScrollPane;
 public class MainMenu extends javax.swing.JFrame {
 
 	Color color = new Color(1);
+	Usuario usuario = new Usuario();
     /**
      * Creates new form Main
      */
-    public MainMenu() {
+    public MainMenu(Usuario usuario) {
     	setTitle("JayBnB :: Sistema de Arriendo de Propiedades");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu.class.getResource("/Recursos/jaybnb_6iv_icon.ico")));
     	setResizable(false);
-        initComponents();
+        initComponents(usuario);
     	panelBody.removeAll();
     	panelBody.add( new MenuDashboard());
         panelBody.repaint();
@@ -265,7 +270,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(Usuario usuario) {
 
         panelHeader = new javax.swing.JPanel();
         panelMenu = new javax.swing.JPanel();
@@ -292,23 +297,32 @@ public class MainMenu extends javax.swing.JFrame {
         lblIconUser.setIcon(FontIcon.of(FontAwesomeSolid.USER_CIRCLE, 48, color.white));
         panelHeader.add(lblIconUser);
         
-        JLabel lblNomUser = new JLabel("Nombre de Usuario");
-        lblNomUser.setForeground(Color.WHITE);
-        lblNomUser.setFont(new Font("Dubai", Font.BOLD, 14));
-        lblNomUser.setBounds(83, 11, 192, 24);
-        panelHeader.add(lblNomUser);
-        
-        JLabel lblPerfil = new JLabel("ROL del Usuario");
-   
-        lblPerfil.setForeground(Color.WHITE);
-        lblPerfil.setFont(new Font("Dubai", Font.BOLD, 14));
-        lblPerfil.setBounds(83, 40, 192, 24);
-        panelHeader.add(lblPerfil);
-        
         JPanel panel = new JPanel();
         panel.setBackground(new Color(24, 52, 78));
         panel.setBounds(0, 0, 250, 75);
         panelHeader.add(panel);
+        panel.setLayout(null);
+        
+        JLabel lblNomUser = new JLabel(usuario.getEmail());
+
+        lblNomUser.setBounds(70, 11, 197, 24);
+        panel.add(lblNomUser);
+        lblNomUser.setForeground(Color.WHITE);
+        lblNomUser.setFont(new Font("Dubai", Font.BOLD, 14));
+        
+        JLabel lblPerfil = new JLabel("ROL");
+        
+        if (usuario.getIsStaff() == 1) {
+			lblPerfil.setText("Administrador");
+		}else {
+			lblPerfil.setText("Funcionario");
+		}
+      
+        lblPerfil.setForeground(Color.WHITE);
+        lblPerfil.setFont(new Font("Dubai", Font.BOLD, 14));
+        lblPerfil.setBounds(70, 40, 118, 24);
+        panel.add(lblPerfil);
+  
 
         panelMenu.setBackground(new java.awt.Color(115, 120, 230));
         panelMenu.setPreferredSize(new java.awt.Dimension(250, 384));
@@ -371,7 +385,8 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+            	
+               // new MainMenu( usuario).setVisible(true);
             }
         });
     }

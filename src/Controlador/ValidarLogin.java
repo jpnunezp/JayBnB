@@ -70,4 +70,37 @@ public class ValidarLogin {
     	return resultado;
     }    
     
+    
+    public Usuario usuarioActual(String username) {
+    	Usuario user = new Usuario();
+    	boolean resultado = false;
+    	ConexionDB conn = new ConexionDB();
+    	Connection cnx = conn.connect();
+    	
+    	String consultasql = "SELECT au.id, au.email, au.is_staff FROM AUTH_USER au WHERE au.username = ?";
+
+    	boolean existe = false;
+    	
+    	try {
+			PreparedStatement ps = cnx.prepareStatement(consultasql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				user.setId(rs.getInt(1));
+				user.setEmail(rs.getString(2));
+				user.setIsStaff(rs.getInt(3));
+				
+			}
+
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+			
+    	
+    	return user;    	
+	}
+    
 }
