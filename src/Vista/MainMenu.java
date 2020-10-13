@@ -10,6 +10,7 @@ import form.MenuClientes;
 import form.MenuDashboard;
 import form.MenuEmpresaTransporte;
 import form.MenuEmpresaTurismo;
+import form.MenuInventario;
 import form.MenuPagos;
 import form.MenuPropiedades;
 import form.MenuReservas;
@@ -110,7 +111,7 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 panelBody.removeAll();
-            	panelBody.add(new MenuPropiedades());
+            	panelBody.add(new MenuInventario());
                 panelBody.repaint();
                 panelBody.revalidate();
             }

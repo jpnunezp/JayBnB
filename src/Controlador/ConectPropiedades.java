@@ -10,15 +10,12 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Modelo.DetallePropiedad;
 import Modelo.Propiedad;
 import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.OracleTypes;
 
 public class ConectPropiedades {
-
-	public void InsertPropiedad() {
-		
-	}
 	
 	public ArrayList<Propiedad> listarPropiedades() {
 		ArrayList<Propiedad> lista_prop = new ArrayList<Propiedad>();
@@ -173,6 +170,7 @@ public class ConectPropiedades {
 			
 		} catch (SQLException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			if(e.getErrorCode()== 20001) {
 				//handle error here, or convert to some specific error and use e.getMessage()
 				System.out.println(e.getMessage());
@@ -184,5 +182,166 @@ public class ConectPropiedades {
 		
 		
 	}
+	
+	public boolean actualizarPropiedad(Propiedad prop) {
+		boolean exito = false;
+		
+		ConexionDB con = new ConexionDB();
+		Connection conn = con.connect();
+		
+		try {
+			//String consulta = "SELECT PKG_PROPIEDAD.FN_LISTAR_PROPIEDADES FROM DUAL";
+			//PreparedStatement st = conn.prepareStatement(consulta);
+			
+			CallableStatement  st =
+		    	        conn.prepareCall( "{call PKG_PROPIEDAD.sp_update_all_propie(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}" );
+						st.setString(1, prop.getDireccion());
+		      			st.setString(2, prop.getNom_propietario());
+		      			st.setInt(3, prop.getNum_banno());
+		      			st.setString(4, prop.getCaracteris());
+		      			st.setInt(5, prop.getNum_bodega());
+		      			st.setInt(6, prop.getValor_gastoc());
+		      			st.setString(7, String.valueOf(prop.getJardin()));
+		      			st.setInt(8, prop.getNum_habita());
+		      			st.setInt(9, prop.getCant_max_ocu());
+		      			st.setInt(10, prop.getId_estado_pro());
+		      			st.setInt(11, prop.getNum_estaci());
+		      			st.setInt(12, prop.getInven_valori());
+		      			st.setInt(13, prop.getValor_compra());
+						st.setString(14, prop.getRol_propie());
+		      			st.setInt(15, prop.getAvaluo_fiscal());
+		      			st.setInt(16, prop.getPago_contri());
+		      			st.setInt(17, prop.getMetros());
+		      			st.setInt(18, prop.getValor_noche());
+		      			st.setString(19, prop.getNom_propiedad());
+		      			st.setString(20, prop.getRun_propie());
+		      			st.setInt(21, prop.getValor_gastobasic());
+		      			st.setInt(22, prop.getId_comuna());
+		      			st.setInt(23, prop.getNum_cocina());
+		      			System.out.println( st.executeUpdate());
+		      			
+		      			exito = true;
+		    	      //st.registerOutParameter( 1, OracleTypes.CURSOR );
+		    	      //System.out.println( st.execute() );
+		    	      //ResultSet rs = st.getCursor( 1 );
+
+
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			if(e.getErrorCode()== 20001) {
+				//handle error here, or convert to some specific error and use e.getMessage()
+				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "La Propiedad no se pudo actualizar, verifique los datos", "Error", JOptionPane.ERROR_MESSAGE);;
+				}
+			exito = false;
+		}
+		return exito;
+		
+		
+	}
+	
+	public ArrayList<DetallePropiedad> detallePropiedad(String rol) {
+		ArrayList<DetallePropiedad> lista_dp = new ArrayList<DetallePropiedad>();
+		ConexionDB con = new ConexionDB();
+		Connection conn = con.connect();
+		
+		try {
+
+		      OracleCallableStatement st =
+		    	        (OracleCallableStatement) conn.prepareCall( "BEGIN :1 := pkg_detalle_inv_propi.FN_DET_INVENT_PROPIEDAD('"+rol+"'); END;" );
+		      		  //st.setString(1, rol);
+		    	      
+		    	      st.registerOutParameter( 1, OracleTypes.CURSOR );
+		    	      System.out.println( st.execute() );
+
+		    	      ResultSet rs = st.getCursor( 1 );
+			while (rs.next()) {
+				DetallePropiedad dp = new DetallePropiedad();
+				dp.setId_propiedad(rs.getInt(1));
+				dp.setRol(rs.getString(2));
+				dp.setNombre_prop(rs.getString(3));
+				dp.setId_inven(rs.getInt(4));
+				dp.setNombre_inv(rs.getString(5));
+				dp.setCosto(rs.getInt(6));
+				dp.setNombre_tipo_inv(rs.getString(7));
+				dp.setCantidad(rs.getInt(8));
+				lista_dp.add(dp);
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return lista_dp;
+		
+		
+	}
+	
+	public boolean actualizarDetallePropiedad(DetallePropiedad dprop) {
+		boolean exito = false;
+		
+		ConexionDB con = new ConexionDB();
+		Connection conn = con.connect();
+		
+		try {
+			
+			CallableStatement  st =
+		    	        conn.prepareCall( "{call pkg_detalle_inv_propi.sp_agregar_inv_propie(?,?,?)}" );
+		      			st.setString(1, dprop.getRol());
+		      			st.setInt(2, dprop.getId_inven());
+		      			st.setInt(3, dprop.getCantidad());
+
+		      			System.out.println( st.executeUpdate());
+		      			
+		      			exito = true;
+
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			if(e.getErrorCode()== 20001) {
+				//handle error here, or convert to some specific error and use e.getMessage()
+				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "La Propiedad no se pudo actualizar, verifique los datos", "Error", JOptionPane.ERROR_MESSAGE);;
+				}
+			exito = false;
+		}
+		return exito;
+		
+		
+	}
+	
+	
+	public boolean limpiarrDetallePropiedad(String rol) {
+		boolean exito = false;
+		
+		ConexionDB con = new ConexionDB();
+		Connection conn = con.connect();
+		
+		try {
+			
+			CallableStatement  st =
+		    	        conn.prepareCall( "{call pkg_detalle_inv_propi.sp_eliminar_inventario_prop('"+rol+"')}" );
+		      			System.out.println( st.executeUpdate());
+		      			
+		      			exito = true;
+
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			if(e.getErrorCode()== 20001) {
+				//handle error here, or convert to some specific error and use e.getMessage()
+				System.out.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "La Propiedad no se pudo actualizar, verifique los datos", "Error", JOptionPane.ERROR_MESSAGE);;
+				}
+			exito = false;
+		}
+		return exito;
+		
+		
+	}
+	
 	
 }

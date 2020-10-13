@@ -233,7 +233,7 @@ public class ModificarPropiedad extends javax.swing.JPanel {
         txtRutDueno.setFont(new Font("Dubai", Font.BOLD, 16));
         txtRutDueno.setBorderColor(new Color(3, 33, 57));
         txtRutDueno.setBounds(175, 241, 135, 28);
-        txtNomDueno.setText(modiprop.getRun_propie());
+        txtRutDueno.setText(modiprop.getRun_propie());
         add(txtRutDueno);
         
         JLabel label_7 = new JLabel("Nombre Propietario:");
@@ -521,12 +521,8 @@ public class ModificarPropiedad extends javax.swing.JPanel {
         	
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Falta completar este módulo");
-        		/*
+  
         		ConectPropiedades cprop = new ConectPropiedades();
-        		ArrayList<Propiedad> lista = new ArrayList<Propiedad>();
-        		lista = cprop.listarPropiedades();
-        		System.out.println("Cantidad de registros en lista = "+lista.size());
         		
         		Propiedad prop = new Propiedad();
         		prop.setRol_propie(txtROL.getText());
@@ -560,13 +556,13 @@ public class ModificarPropiedad extends javax.swing.JPanel {
         		prop.setId_estado_pro(1);
         		prop.setId_comuna(1);
         		
-        		boolean respuesta = cprop.registrarPropiedad(prop);
+        		boolean respuesta = cprop.actualizarPropiedad(prop);
         		if (respuesta) {
-        			JOptionPane.showMessageDialog(null, "LA PROPIEDAD FUE GUARDADA EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "LA PROPIEDAD FUE ACTUALIZADA EXITOSAMENTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
 				}else {
-					txtROL.requestFocus();
+					txtNomPropiedad.requestFocus();
 				}
-        		*/
+        		
         		      	
         		//MensajeOK mensaje = new MensajeOK("GUARDAR CLIENTE", "EL CLIENTE FUE GUARDADO EXITOSAMENTE");
         		//mensaje.setVisible(true);

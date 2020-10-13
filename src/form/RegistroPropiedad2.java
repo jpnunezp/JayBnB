@@ -202,6 +202,19 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(cmbComuna);
         
         RSTextFieldOne txtNomDueno = new RSTextFieldOne();
+        txtNomDueno.setText("TURISMO REAL");
+        txtNomDueno.setEnabled(false);
+        txtNomDueno.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent evt) {
+        		char c=evt.getKeyChar();
+        	    if(!(Character.isAlphabetic(c) ||  (c==KeyEvent.VK_BACK_SPACE) ||  c==KeyEvent.VK_DELETE || c==KeyEvent.VK_SPACE)) {
+        	    	getToolkit().beep();
+        	        evt.consume();	
+        	    }
+
+        	}
+        });
         txtNomDueno.setPlaceholder("");
         txtNomDueno.setPhColor(SystemColor.controlDkShadow);
         txtNomDueno.setForeground(new Color(25, 25, 112));
@@ -218,6 +231,8 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_6);
         
         RSTextFieldOne txtRutDueno = new RSTextFieldOne();
+        txtRutDueno.setText("78087963-3");
+        txtRutDueno.setEnabled(false);
         txtRutDueno.setPlaceholder("");
         txtRutDueno.setPhColor(SystemColor.controlDkShadow);
         txtRutDueno.setForeground(new Color(25, 25, 112));
@@ -241,6 +256,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_8);
         
         RSTextFieldOne txtEvaFiscal = new RSTextFieldOne();
+        txtEvaFiscal.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtEvaFiscal.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtEvaFiscal.setPlaceholder("$");
         txtEvaFiscal.setPhColor(SystemColor.controlDkShadow);
         txtEvaFiscal.setForeground(new Color(25, 25, 112));
@@ -257,6 +287,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_9);
         
         RSTextFieldOne txtValorCompra = new RSTextFieldOne();
+        txtValorCompra.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtValorCompra.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtValorCompra.setPlaceholder("$");
         txtValorCompra.setPhColor(SystemColor.controlDkShadow);
         txtValorCompra.setForeground(new Color(25, 25, 112));
@@ -273,6 +318,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_10);
         
         RSTextFieldOne txtGastoComun = new RSTextFieldOne();
+        txtGastoComun.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtGastoComun.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtGastoComun.setPlaceholder("$");
         txtGastoComun.setPhColor(SystemColor.controlDkShadow);
         txtGastoComun.setForeground(new Color(25, 25, 112));
@@ -289,6 +349,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_11);
         
         RSTextFieldOne txtGastoBasico = new RSTextFieldOne();
+        txtGastoBasico.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtGastoBasico.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtGastoBasico.setPlaceholder("$");
         txtGastoBasico.setPhColor(SystemColor.controlDkShadow);
         txtGastoBasico.setForeground(new Color(25, 25, 112));
@@ -305,6 +380,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_12);
         
         RSTextFieldOne txtContribu = new RSTextFieldOne();
+        txtContribu.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtContribu.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtContribu.setPlaceholder("$");
         txtContribu.setPhColor(SystemColor.controlDkShadow);
         txtContribu.setForeground(new Color(25, 25, 112));
@@ -321,6 +411,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_13);
         
         RSTextFieldOne txtValorInvent = new RSTextFieldOne();
+        txtValorInvent.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtValorInvent.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtValorInvent.setPlaceholder("$");
         txtValorInvent.setPhColor(SystemColor.controlDkShadow);
         txtValorInvent.setForeground(new Color(25, 25, 112));
@@ -337,6 +442,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_14);
         
         RSTextFieldOne txtValorNoche = new RSTextFieldOne();
+        txtValorNoche.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtValorNoche.getText().length() >= 10;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtValorNoche.setPlaceholder("$");
         txtValorNoche.setPhColor(SystemColor.controlDkShadow);
         txtValorNoche.setForeground(new Color(25, 25, 112));
@@ -353,6 +473,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_15);
         
         RSTextFieldOne txtNumHabita = new RSTextFieldOne();
+        txtNumHabita.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtNumHabita.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtNumHabita.setPlaceholder("1");
         txtNumHabita.setPhColor(SystemColor.controlDkShadow);
         txtNumHabita.setForeground(new Color(25, 25, 112));
@@ -369,6 +504,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_16);
         
         RSTextFieldOne txtMaxOcupa = new RSTextFieldOne();
+        txtMaxOcupa.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtMaxOcupa.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtMaxOcupa.setPlaceholder("1");
         txtMaxOcupa.setPhColor(SystemColor.controlDkShadow);
         txtMaxOcupa.setForeground(new Color(25, 25, 112));
@@ -385,6 +535,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_17);
         
         RSTextFieldOne txtNumBano = new RSTextFieldOne();
+        txtNumBano.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtNumBano.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtNumBano.setPlaceholder("1");
         txtNumBano.setPhColor(SystemColor.controlDkShadow);
         txtNumBano.setForeground(new Color(25, 25, 112));
@@ -401,6 +566,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_18);
         
         RSTextFieldOne txtNumBodega = new RSTextFieldOne();
+        txtNumBodega.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtNumBodega.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtNumBodega.setPlaceholder("1");
         txtNumBodega.setPhColor(SystemColor.controlDkShadow);
         txtNumBodega.setForeground(new Color(25, 25, 112));
@@ -417,6 +597,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_19);
         
         RSTextFieldOne txtNumEstacio = new RSTextFieldOne();
+        txtNumEstacio.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtNumEstacio.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtNumEstacio.setPlaceholder("1");
         txtNumEstacio.setPhColor(SystemColor.controlDkShadow);
         txtNumEstacio.setForeground(new Color(25, 25, 112));
@@ -426,6 +621,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(txtNumEstacio);
         
         RSTextFieldOne txtNumCocina = new RSTextFieldOne();
+        txtNumCocina.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtNumCocina.getText().length() >= 2;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtNumCocina.setPlaceholder("1");
         txtNumCocina.setPhColor(SystemColor.controlDkShadow);
         txtNumCocina.setForeground(new Color(25, 25, 112));
@@ -449,6 +659,21 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         add(label_21);
         
         RSTextFieldOne txtMetros = new RSTextFieldOne();
+        txtMetros.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+              char c = e.getKeyChar();
+              if (!((c >= '0') && (c <= '9') ||
+                 (c == KeyEvent.VK_BACK_SPACE) ||
+                 (c == KeyEvent.VK_DELETE))) {
+                getToolkit().beep();
+                e.consume();
+              }
+              boolean max = txtMetros.getText().length() >= 4;
+              if ( max ){
+                  e.consume();
+              }   
+            }
+          });
         txtMetros.setPlaceholder("1");
         txtMetros.setPhColor(SystemColor.controlDkShadow);
         txtMetros.setForeground(new Color(25, 25, 112));
@@ -495,12 +720,9 @@ public class RegistroPropiedad2 extends javax.swing.JPanel {
         btnGuardar.addActionListener(new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		ConectPropiedades cprop = new ConectPropiedades();
-        		ArrayList<Propiedad> lista = new ArrayList<Propiedad>();
-        		lista = cprop.listarPropiedades();
-        		System.out.println("Cantidad de registros en lista = "+lista.size());
-        		
+        		ConectPropiedades cprop = new ConectPropiedades();        		
         		Propiedad prop = new Propiedad();
+        		
         		prop.setRol_propie(txtROL.getText());
         		prop.setNom_propiedad(txtNomPropiedad.getText());
         		prop.setAvaluo_fiscal(Integer.parseInt(txtEvaFiscal.getText()));
