@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
@@ -51,6 +52,9 @@ import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 
+	private static final String EMAIL_PATTERN = 
+		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private JPanel contentPane;
 	private RSTextFieldOne txtUsername = new RSTextFieldOne();
 	private String contra;
@@ -110,6 +114,18 @@ public class Login extends JFrame {
 		txtUsername.setFont(new Font("Tahoma", Font.BOLD, 24));
 		txtUsername.setBorderColor(new Color(0, 128, 128));
 		txtUsername.setBounds(366, 374, 368, 52);
+		txtUsername.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+        		if(!txtUsername.getText().equals("")) {
+            		if (!txtUsername.getText().matches(EMAIL_PATTERN)) {
+            			JOptionPane.showMessageDialog(null, "DEBE INGRESAR UN EMAIL VALIDO");
+            			txtUsername.requestFocus();
+            		}
+        		}
+
+        	}
+        });
 		contentPane.add(txtUsername);
 		
 		RSButtonShape btnshpIngresar = new RSButtonShape();
