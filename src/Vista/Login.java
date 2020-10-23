@@ -213,7 +213,7 @@ public class Login extends JFrame {
 		boolean resu = vl.getPass(txtUsername.getText(), contra);
 		if (resu) {
 			usuario = vl.usuarioActual(txtUsername.getText());
-			MainMenu mp = new MainMenu(usuario);
+			MainMenu mp = new MainMenu();
 			mp.setVisible(true);
 			dispose();
 		} else {

@@ -59,7 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public MainMenu(Usuario usuario) {
+    public MainMenu() {
     	setTitle("JayBnB :: Sistema de Arriendo de Propiedades");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenu.class.getResource("/Recursos/jaybnb_6iv_icon.ico")));
     	setResizable(false);
@@ -386,7 +386,7 @@ public class MainMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             	
-               // new MainMenu( usuario).setVisible(true);
+               new MainMenu( ).setVisible(true);
             }
         });
     }
