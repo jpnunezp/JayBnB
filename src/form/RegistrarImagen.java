@@ -54,6 +54,9 @@ import RSMaterialComponent.RSTableMetroCustom;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import RSMaterialComponent.RSLabelTextIcon;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -61,12 +64,7 @@ import java.awt.event.MouseEvent;
  */
 public class RegistrarImagen extends javax.swing.JPanel {
 
-	private static final String EMAIL_PATTERN = 
-		    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-		    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-	DocumentFilter filter = new UppercaseDocumentFilter();
-    RSTableMetroCustom tblCliente = new RSTableMetroCustom();
+    RSTableMetroCustom tblImagen = new RSTableMetroCustom();
     String rol = "";
 	
     /**
@@ -87,15 +85,15 @@ public class RegistrarImagen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel1.setBounds(0, 0, 785, 37);
-        jLabel1.setForeground(new Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo = new javax.swing.JLabel();
+        lblTitulo.setBounds(0, 0, 785, 37);
+        lblTitulo.setForeground(new Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel1.setBackground(new Color(0, 80, 112));
-        jLabel1.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
-        jLabel1.setText("Seleccionar una Propiedad");
-        jLabel1.setOpaque(true);
+        lblTitulo.setBackground(new Color(0, 80, 112));
+        lblTitulo.setFont(new Font("Dubai", Font.BOLD, 20)); // NOI18N
+        lblTitulo.setText("Agregar Im\u00E1genes  a Propiedad :");
+        lblTitulo.setOpaque(true);
         
         RSButtonShape btnshpAgregarCliente = new RSButtonShape();
         btnshpAgregarCliente.setEnabled(false);
@@ -121,8 +119,8 @@ public class RegistrarImagen extends javax.swing.JPanel {
         btnshpAgregarCliente.setForeground(Color.gray);
         btnshpAgregarCliente.setBackground(new Color(0, 51, 102));
         btnshpAgregarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-        btnshpAgregarCliente.setText("   AGREGAR IMAGEN");
-        btnshpAgregarCliente.setIcon(FontIcon.of(FontAwesomeSolid.PLUS_CIRCLE, 40, Color.white));
+        btnshpAgregarCliente.setText("   ACEPTAR");
+        btnshpAgregarCliente.setIcon(FontIcon.of(FontAwesomeSolid.SAVE, 40, Color.white));
         btnshpAgregarCliente.setForma(RSButtonShape.FORMA.ROUND);
         
         RSButtonShape btnshpVolverCliente = new RSButtonShape();
@@ -147,18 +145,18 @@ public class RegistrarImagen extends javax.swing.JPanel {
         btnshpVolverCliente.setIcon(FontIcon.of(Entypo.BACK, 40, new Color(0, 51, 102)));
         btnshpVolverCliente.setForma(RSButtonShape.FORMA.ROUND);
         setLayout(null);
-        add(jLabel1);
+        add(lblTitulo);
         add(btnshpAgregarCliente);
         add(btnshpVolverCliente);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 61, 753, 428);
+        scrollPane.setBounds(10, 61, 272, 428);
         add(scrollPane);
-        tblCliente.addMouseListener(new MouseAdapter() {
+        tblImagen.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
-        		DefaultTableModel model = (DefaultTableModel)tblCliente.getModel();
-        		rol = model.getValueAt(tblCliente.getSelectedRow(), 0).toString();
+        		DefaultTableModel model = (DefaultTableModel)tblImagen.getModel();
+        		rol = model.getValueAt(tblImagen.getSelectedRow(), 0).toString();
         		System.out.println("El ROL seleccionado es: "+rol);
         		btnshpAgregarCliente.setEnabled(true);
         		
@@ -166,22 +164,51 @@ public class RegistrarImagen extends javax.swing.JPanel {
         });
         
 
-        tblCliente.setFont(new Font("Dubai", Font.BOLD, 12));
-        tblCliente.setFontHead(new Font("Dubai", Font.BOLD, 14));
-        tblCliente.setColorSecundaryText(new Color(0, 0, 128));
-        tblCliente.setBackgoundHover(new Color(47, 79, 79));
-        tblCliente.setBackgoundHead(new Color(0, 128, 128));
-        tblCliente.setColorPrimaryText(new Color(25, 25, 112));
-        tblCliente.setShowVerticalLines(true);
-        tblCliente.setModel(new DefaultTableModel(
+        tblImagen.setFont(new Font("Dubai", Font.BOLD, 12));
+        tblImagen.setFontHead(new Font("Dubai", Font.BOLD, 14));
+        tblImagen.setColorSecundaryText(new Color(0, 0, 128));
+        tblImagen.setBackgoundHover(new Color(47, 79, 79));
+        tblImagen.setBackgoundHead(new Color(0, 128, 128));
+        tblImagen.setColorPrimaryText(new Color(25, 25, 112));
+        tblImagen.setShowVerticalLines(true);
+        tblImagen.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null},
+        		{null, null},
         	},
         	new String[] {
-        		"ROL", "NOMBRE", "DIRECCION", "VALOR NOCHE", "INVENTARIO VALOR"
+        		"ID", "NOMBRE ARCHIVO"
         	}
         ));
-        scrollPane.setViewportView(tblCliente);
+        tblImagen.getColumnModel().getColumn(0).setPreferredWidth(59);
+        tblImagen.getColumnModel().getColumn(1).setPreferredWidth(192);
+        scrollPane.setViewportView(tblImagen);
+        
+        RSButtonShape buttonShape = new RSButtonShape();
+        buttonShape.setText("   BUSCAR");
+        buttonShape.setHorizontalAlignment(SwingConstants.CENTER);
+        buttonShape.setForma(RSButtonShape.FORMA.ROUND);
+        buttonShape.setForegroundText(Color.WHITE);
+        buttonShape.setForegroundHover(Color.WHITE);
+        buttonShape.setForeground(Color.GRAY);
+        buttonShape.setFont(new Font("Dubai", Font.BOLD, 13));
+        buttonShape.backgroundHover = SystemColor.controlShadow;
+        buttonShape.setBackgroundHover(SystemColor.controlShadow);
+        buttonShape.setBackground(new Color(0, 51, 102));
+        buttonShape.setBounds(567, 61, 140, 42);
+        add(buttonShape);
+        
+        RSLabelTextIcon lbltxtcnSdfs = new RSLabelTextIcon();
+        lbltxtcnSdfs.setIcons(ICONS.CAMERA_ALT);
+        lbltxtcnSdfs.setForeground(new Color(25, 25, 112));
+        lbltxtcnSdfs.setText("AGREGAR IMAGEN");
+        lbltxtcnSdfs.setBounds(342, 63, 200, 40);
+        add(lbltxtcnSdfs);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(new Color(25, 25, 112)));
+        panel.setBounds(331, 119, 401, 370);
+        add(panel);
+        panel.setLayout(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void llenarTabla() {
@@ -190,19 +217,19 @@ public class RegistrarImagen extends javax.swing.JPanel {
 		ConectPropiedades cprop = new ConectPropiedades();
 		lista = cprop.listarPropiedades();
 		
-		String[] col = {"ROL", "NOMBRE", "DIRECCION", "VALOR NOCHE", "INVENTARIO VALOR"};
+		String[] col = {"ID", "NOMBRE ARCHIVO"};
 		DefaultTableModel tableModel = new DefaultTableModel(col, 0);
 		
 		for (Propiedad prop : lista) {
 			tableModel.addRow( new Object[]{prop.getRol_propie(), prop.getNom_propiedad(), prop.getDireccion(), prop.getValor_noche(), prop.getInven_valori()});
 		}
 		
-		tblCliente.setModel(tableModel);
+		tblImagen.setModel(tableModel);
 		
 	}
     
     
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblTitulo;
     
     class UppercaseDocumentFilter extends DocumentFilter {
         public void insertString(DocumentFilter.FilterBypass fb, int offset,
